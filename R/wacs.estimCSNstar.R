@@ -103,7 +103,7 @@
   }
   
   # Estimating the skewness parameters by profile MOM
-  Shat = optim(par=Shat.ini,fn=WMdiff,moments=c(E,V,Rho.hat,M0),method="Nelder-Mead",
+  Shat = stats::optim(par=Shat.ini,fn=WMdiff,moments=c(E,V,Rho.hat,M0),method="Nelder-Mead",
                control=list(abstol=0.001))$par
   for (v in 1:Nv){
     if (Shat[v] >= 0.99 )  Shat[v] =  0.9
@@ -216,10 +216,10 @@ csnPWM <-function(yy,zz)
   S   = sum(zz)
   m1  = sum(yy*zz)/S
   m2  = sum(yy^2*zz)/S - m1*m1
-  m11 = sum(yy*pnorm(yy)*zz)/S
+  m11 = sum(yy*stats::pnorm(yy)*zz)/S
 
 
-  output = optim(c(m1,sqrt(m2),0),flik,gr=NULL,yy=yy,zz=zz,method="Nelder-Mead")
+  output = stats::optim(c(m1,sqrt(m2),0),flik,gr=NULL,yy=yy,zz=zz,method="Nelder-Mead")
   if (output$par[3]> 0.98) {output$par[3] = 0.98}
   if (output$par[3]< -0.98) {output$par[3] = -0.98}
   if (output$par[2]< 0){

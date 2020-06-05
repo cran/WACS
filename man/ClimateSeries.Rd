@@ -10,7 +10,7 @@ year : Year
 \details{
 month : Month
 
-day : Day
+day : Day 
 
 ETPP : Evaporation and sweating (mm)
 
@@ -18,10 +18,9 @@ RG : Radiance (Joules/cm²)
 
 rain : Height of precipitation (mm)
 
-tmin : Minimum temperature (Celsius)
+tmin : Minimum temperature (degré Celsius)
 
-tmax : Maximum temperature (Celsius)
+tmax : Maximum temperature (degré Celsius)
 
 V : Wind speed (meters per second)
 }
-

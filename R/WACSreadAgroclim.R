@@ -32,7 +32,11 @@
 #'                          tmin and tmax}
 #'         }
 #'
-
+#' @examples
+#' \dontrun{
+#'   # using an agroclim format file
+#'   WACSdata(WACSreadAgroclim("myfile.csv"))
+#' }
 
 WACSreadAgroclim = function(filename) 
 {
@@ -55,7 +59,7 @@ WACSreadAgroclim = function(filename)
     stop (paste("[WACSreadAgroclim] file bad agroclim format:", filename));
   }
   index_line = index_line[1];
-  table = read.table(filename, header=TRUE, skip=index_line[1]-1,
+  table = utils::read.table(filename, header=TRUE, skip=index_line[1]-1,
                      dec=".", sep=";")
   
   name_year = NULL

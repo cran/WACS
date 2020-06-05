@@ -57,12 +57,13 @@
     colnames(Resid)[v] = paste("V",v,"d",sep="")
     
     if (plot.it==TRUE){
-      png(paste(DIR,"Annual_",colnames(y)[v],".png",sep=""))
-      boxplot(t(M)~c(1:365),outline=FALSE,xlab="Julian day",ylab=paste("Variable V",v,sep=""),na.action=drop)
-      lines(Dv[,1],col="red",lwd=3)
-      lines(Dv[,1]-2*Dv[,2],col="red",lwd=1)
-      lines(Dv[,1]+2*Dv[,2],col="red",lwd=1)
-      dev.off()
+      grDevices::png(paste(DIR,"Annual_",colnames(y)[v],".png",sep=""))
+      graphics::boxplot(t(M)~c(1:365),outline=FALSE,xlab="Julian day",
+                        ylab=paste("Variable V",v,sep=""),na.action=drop)
+      graphics::lines(Dv[,1],col="red",lwd=3)
+      graphics::lines(Dv[,1]-2*Dv[,2],col="red",lwd=1)
+      graphics::lines(Dv[,1]+2*Dv[,2],col="red",lwd=1)
+      grDevices::dev.off()
     }
   }
   return(list(Resid,Central,Deviation))
@@ -88,8 +89,8 @@ extract.annual.trend = function(y,spar=0.7,trend.norm="L2"){
   #####################################################
   M=matrix(y,ncol=365,byrow=TRUE)
   if (trend.norm=="L1"){
-    y.center = apply(M,2,median,na.rm=TRUE)
-    dev = function(v) z=mean(abs(v-median(v,na.rm=TRUE)),na.rm=TRUE)
+    y.center = apply(M,2,stats::median,na.rm=TRUE)
+    dev = function(v) z=mean(abs(v-stats::median(v,na.rm=TRUE)),na.rm=TRUE)
   }else{}
   if (trend.norm=="L2"){
     y.center = apply(M,2,mean,na.rm=TRUE)
@@ -98,8 +99,8 @@ extract.annual.trend = function(y,spar=0.7,trend.norm="L2"){
   y.dev = apply(M,2,dev)
   
   # smoothing
-  y.center.smooth = smooth.spline(rep(y.center,3),spar=spar)[[2]][366:730]
-  y.dev.smooth    = smooth.spline(rep(y.dev,3),spar=spar)[[2]][366:730]
+  y.center.smooth = stats::smooth.spline(rep(y.center,3),spar=spar)[[2]][366:730]
+  y.dev.smooth    = stats::smooth.spline(rep(y.dev,3),spar=spar)[[2]][366:730]
   return(cbind(y.center.smooth,y.dev.smooth))
 }
   

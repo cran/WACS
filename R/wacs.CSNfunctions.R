@@ -2,7 +2,7 @@
   #
   # These functions are part of WACSgen V1.0 
   # Copyright © 2013,2014,2015, D. Allard, BioSP,
-  # and Ronan Trepos MIA-T, INRA
+  # and Ronan Trépos MIA-T, INRA
   #
   # This program is free software; you can redistribute it and/or
   # modify it under the terms of the GNU General Public License
@@ -48,7 +48,7 @@
 
   dcsn = function (z, location=0, scale=1, skew=0){  
     # Computes the density of a CNS*(location,scale^2,shape) = CSN_{1,1}(location,scale^2,\delta,1-d^2)
-    dz    = 2*dnorm(z,location,scale)*pnorm(skew*(z-location)/scale,0,sqrt(1-skew^2))
+    dz    = 2*stats::dnorm(z,location,scale)*stats::pnorm(skew*(z-location)/scale,0,sqrt(1-skew^2))
   return(dz)
   }
 
@@ -62,14 +62,15 @@
   qcsn = function(p, location = 0, scale = 1, skew =0){
     # Computes the quantile of a CNS*(location,scale^2,shape) = CSN_{1,1}(location,scale^2,\delta,1-d^2)
     g = function(z){(pcsn(z,location, scale, skew)-p)^2}
-    q = uniroot(g,interval=c(qnorm(p/2,location, scale),qnorm(1-p/2,location, scale)))$root
+    q = stats::uniroot(g,interval=c(stats::qnorm(p/2,location, scale),
+                                    stats::qnorm(1-p/2,location, scale)))$root
     return(q)
   }
 
   rcsn = function(n=1, location=0, scale=1, skew=0){
     # random generation of a CNS*(location,scale^2,shape) = CSN_{1,1}(location,scale^2,\delta,1-d^2)
-    U.pos = abs(rnorm(n))
-    V      = rnorm(n)  
+    U.pos = abs(stats::rnorm(n))
+    V      = stats::rnorm(n)  
     Z      = location + skew*scale*U.pos + sqrt(1-skew^2)*scale*V
     return(Z)
   }
@@ -124,8 +125,8 @@
     NonSkew = sqrt(1-Skew^2)
     SS      = sqrtm(Sigma)
     for (i in 1:n){
-      u       = abs(rnorm(Nv))
-      v       = rnorm(Nv)      
+      u       = abs(stats::rnorm(Nv))
+      v       = stats::rnorm(Nv)      
       y       = Skew*u + NonSkew*v
       z[i,]   = Mu + SS%*%y
     }
@@ -181,7 +182,7 @@
   while (!OK){
     niter = niter + 1
     add = add + 0.1
-    u.start = Nu + abs(rnorm(length(Nu),0,add))
+    u.start = Nu + abs(stats::rnorm(length(Nu),0,add))
     u  = rtmvnorm(n,sigma=QQ,lower=Nu,algorithm="gibbs",start.value=u.start,burn.in.samples=200)
     if (!is.na(u[1])) OK = TRUE
     if (niter == 20) {
@@ -190,7 +191,7 @@
       OK = TRUE
     }
   }
-  v  = matrix(rnorm(length(Mu)*n),nrow=n)
+  v  = matrix(stats::rnorm(length(Mu)*n),nrow=n)
   z  = matrix(rep(Mu,n),nrow=n,byrow=T) + u%*%t(FF) + v%*%GG
   return(z)  
   }

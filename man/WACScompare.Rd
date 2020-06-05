@@ -4,9 +4,17 @@
 \alias{WACScompare}
 \title{Performs comparisons between two WACS data structures, or between two WACS simulation series}
 \usage{
-WACScompare(what = what, wacs1 = wacs1, wacspar = wacspar,
-  wacs2 = wacs2, varname = varname, varname2 = NULL, base = 0,
-  above = T, months = 1:12)
+WACScompare(
+  what = what,
+  wacs1 = wacs1,
+  wacspar = wacspar,
+  wacs2 = wacs2,
+  varname = varname,
+  varname2 = NULL,
+  base = 0,
+  above = T,
+  months = 1:12
+)
 }
 \arguments{
 \item{what}{Type of validation. Possible choices are:
@@ -108,4 +116,3 @@ with the variable \code{months}.
 }
  
 }
-

@@ -4,8 +4,14 @@
 \alias{WACSplotdensity}
 \title{For plotting fitted bivariate densities of residuals}
 \usage{
-WACSplotdensity(wacsdata = NULL, wacspar = NULL, season, dimens = c(1, 2),
-  dry = T, DIR = "./")
+WACSplotdensity(
+  wacsdata = NULL,
+  wacspar = NULL,
+  season,
+  dimens = c(1, 2),
+  dry = T,
+  DIR = "./"
+)
 }
 \arguments{
 \item{wacsdata}{WACS data obtained when calling \link{WACSdata} on original climate series}
@@ -37,4 +43,3 @@ If \code{length(dimens)=2}, the same-day bivariate density of the pair of variab
 }
 
 }
-

@@ -20,4 +20,9 @@ A list of 2 objects:
 \description{
 Function that reads a file of format Agroclim
 }
-
+\examples{
+\dontrun{
+  # using an agroclim format file
+  WACSdata(WACSreadAgroclim("myfile.csv"))
+}
+}

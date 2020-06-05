@@ -2,7 +2,7 @@
 #
 # This function is part of WACSgen 1.0
 # Copyright © 2013,2014,2015, D. Allard, BioSP,
-# and Ronan Trepos MIA-T, INRA
+# and Ronan Trépos MIA-T, INRA
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -59,9 +59,9 @@
 #' \dontrun{
 #'   ## Simple example
 #'   data(ClimateSeries)
-#'   ThisData = WACSdata(ClimateSeries,from="1995-01-01",to=1999-12-31")
+#'   ThisData = WACSdata(ClimateSeries,from="1995-01-01", to="2005-12-31")
 #'   ThisPar  = WACSestim(ThisData)
-#'   ThatData = WACSdata(ClimateSeries,from="2002-01-01",to="1999-12-31")
+#'   ThatData = WACSdata(ClimateSeries,from="2002-01-01", to="2012-12-31")
 #'   Comp = WACScompare(what="Sim", wacs1=ThisData, wacspar=ThisPar,
 #'                      wacs2=ThatData, varname="tmin")
 #'   WACSplot(Comp)

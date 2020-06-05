@@ -39,4 +39,3 @@ The rejection technique tends to produce biases. \code{REJECT=FALSE} is thus rec
   ThisSim  = WACSsimul(ThisPar, from="1995-01-01", to="2012-12-31")
 }
 }
-

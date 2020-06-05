@@ -4,9 +4,17 @@
 \alias{WACSvalid}
 \title{Performs validations of WACS simulations}
 \usage{
-WACSvalid(what = "Sim", wacsdata = NULL, wacspar = NULL,
-  wacssimul = NULL, varname = NULL, varname2 = NULL, base = 0,
-  above = TRUE, months = 1:12)
+WACSvalid(
+  what = "Sim",
+  wacsdata = NULL,
+  wacspar = NULL,
+  wacssimul = NULL,
+  varname = NULL,
+  varname2 = NULL,
+  base = 0,
+  above = TRUE,
+  months = 1:12
+)
 }
 \arguments{
 \item{what}{Type of validation. Possible choices are:
@@ -94,4 +102,3 @@ with the variable \code{months}.
                    wacssimul = ThisSim, varname="tmin", base=0, above=FALSE)
 }
 }
-

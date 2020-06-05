@@ -4,9 +4,18 @@
 \alias{WACSestim}
 \title{Estimation of the parameters of a WACS model}
 \usage{
-WACSestim(wacsdata, spar = 0.7, trend.norm = "L2", rain.model = "Gamma",
-  method = "MLE", Vsel = NULL, Nclusters = NULL, clustering = "soft",
-  plot.it = FALSE, DIR = "./")
+WACSestim(
+  wacsdata,
+  spar = 0.7,
+  trend.norm = "L2",
+  rain.model = "Gamma",
+  method = "MLE",
+  Vsel = NULL,
+  Nclusters = NULL,
+  clustering = "soft",
+  plot.it = FALSE,
+  DIR = "./"
+)
 }
 \arguments{
 \item{wacsdata}{Data, as returned by WACSdata}
@@ -67,4 +76,3 @@ are more robust with \code{clustering="soft"}. Clustering is done by means of th
 
 
 }
-

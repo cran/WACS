@@ -4,9 +4,16 @@
 \alias{WACSdata}
 \title{Format data for WACS}
 \usage{
-WACSdata(data, mapping = NULL, bounds = NULL, from = NULL, to = NULL,
-  skip = NULL, Trange = FALSE, seasons = c("03-01", "06-01", "09-01",
-  "12-01"))
+WACSdata(
+  data,
+  mapping = NULL,
+  bounds = NULL,
+  from = NULL,
+  to = NULL,
+  skip = NULL,
+  Trange = FALSE,
+  seasons = c("03-01", "06-01", "09-01", "12-01")
+)
 }
 \arguments{
 \item{data}{A dataframe containing series of values for each variable}
@@ -61,4 +68,3 @@ Default is \code{seasons = c("03-01","06-01","09-01","12-01")}.
 \author{
 D. Allard, BioSP, Ronan Trépos MIA-T, INRA
 }
-

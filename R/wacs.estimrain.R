@@ -57,7 +57,8 @@ wacs.estimrain=function(DATA,rain.model="Gamma",method="MLE",plot.it=FALSE,DIR="
     for (j in 1:Nd){
       if (DATA$rain[j] > 0){
         s = DATA$season[j]
-        NscTR[j] = qnorm(pgamma(DATA$rain[j],scale=par.rain[s,1],shape=par.rain[s,2]))
+        NscTR[j] = stats::qnorm(stats::pgamma(DATA$rain[j],scale=par.rain[s,1],
+                                              shape=par.rain[s,2]))
       }
     }
   }else{}
@@ -119,14 +120,14 @@ estim.Gamma=function(y,method="MLE",seas,plot.it=FALSE,DIR="./"){
       z = abs(log(x) - digamma(x) + lm - log(m))
       return(z)
     }
-    shape = optimize(phi,interval=c(0,100),mean=m,logmean=lm)$minimum
+    shape = stats::optimize(phi,interval=c(0,100),mean=m,logmean=lm)$minimum
     scale = m/shape
   }else{}
   
   # MOM of scale and shape parameter 
   if(method=="MOM"){
     m = mean(y,na.rm=TRUE)
-    v = var(y,na.rm=TRUE)
+    v = stats::var(y,na.rm=TRUE)
     
     scale = v/m
     shape = m/scale
@@ -135,21 +136,22 @@ estim.Gamma=function(y,method="MLE",seas,plot.it=FALSE,DIR="./"){
   # Plots
   
   if (plot.it==TRUE){
-    pdf(paste(DIR,"Precipitation_season",seas,".pdf",sep=""))
-    par(mfrow=c(1,2))
+    grDevices::pdf(paste(DIR,"Precipitation_season",seas,".pdf",sep=""))
+    graphics::par(mfrow=c(1,2))
     
-    plot(sort(y[!is.na(y)]),qgamma(c(1:length(y[!is.na(y)]))/length(y[!is.na(y)]),
-                                   scale=scale,shape=shape),type="l",ylab="Observed quantiles",
-         xlab="Theoretical quantiles",main=paste("Gamma qq-plot season=",seas,sep=""))
-    abline(0,1,col="blue")
-    legend("topleft",legend=c(paste("scale=",round(scale,2)),paste("shape=",round(shape,2))))
+    graphics::plot(sort(y[!is.na(y)]),
+                   stats::qgamma(c(1:length(y[!is.na(y)]))/length(y[!is.na(y)]),
+                                 scale=scale,shape=shape),type="l",ylab="Observed quantiles",
+                   xlab="Theoretical quantiles",main=paste("Gamma qq-plot season=",seas,sep=""))
+    graphics::abline(0,1,col="blue")
+    graphics::legend("topleft",legend=c(paste("scale=",round(scale,2)),paste("shape=",round(shape,2))))
     
-    hist(y[y!=0],freq=FALSE,xlab="Precipitation intensity",ylab="density",main=paste("season=",seas,sep=""),
+    graphics::hist(y[y!=0],freq=FALSE,xlab="Precipitation intensity",ylab="density",main=paste("season=",seas,sep=""),
          n=round(max(y[!is.na(y)])+1,0))
     p=seq(0,max(y[!is.na(y)]),by=0.1)
-    d=dgamma(p,scale=scale,shape=shape)
-    lines(p,d,col="blue",lwd=3)
-    dev.off()
+    d=stats::dgamma(p,scale=scale,shape=shape)
+    graphics::lines(p,d,col="blue",lwd=3)
+    grDevices::dev.off()
   }else{}
   return(c(scale,shape))
 }

@@ -172,7 +172,8 @@ wacs.simul_innercall=function(wacspar, from, to, first.day=NULL, REJECT=FALSE){
         # Residual and set the first Simulated value
     s = currSeason
     if(RainModel=="Gamma"){
-      Xresid[1] = qnorm(pgamma(first.day[1],scale=RainPar[s,1],shape=RainPar[s,2]))
+      Xresid[1] = stats::qnorm(stats::pgamma(first.day[1],scale=RainPar[s,1],
+                                             shape=RainPar[s,2]))
     }
     if(RainModel=="None"){
       Xresid[1] = first.day[1]
@@ -189,7 +190,7 @@ wacs.simul_innercall=function(wacspar, from, to, first.day=NULL, REJECT=FALSE){
   # Loop on all days:
   #
   #  1/ sample a new weather type (calls function rMarkov)
-  #  2/ conditionally to this weather type, sample a new vector of variables
+  #  2/ conditionnaly to this weather type, sample a new vector of variables
   #     (calls function rvariables)
   #  3/ test wether these variables are within vbounds (calls function testvariables);
   #     if yes OK; if not go to 2 (uses a while loop) 
@@ -213,7 +214,7 @@ wacs.simul_innercall=function(wacspar, from, to, first.day=NULL, REJECT=FALSE){
     Xsimul[j,iday]    = wacs.day(currDate);
     Xsimul[j,iseason] = currSeason;
 
-    feb29 = ((Xsimul[j,imonth] == 2) && (Xsimul[j,imonth] == 29));
+    feb29 = ((Xsimul[j,imonth] == 2) && (Xsimul[j,iday] == 29));
     
     if (!feb29) {
         jd = jd+1;

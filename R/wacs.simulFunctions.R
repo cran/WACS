@@ -182,7 +182,7 @@ transform.rain = function(y,rain.model,rain.par){
   #           z: a transformed value
   ###################################################################
   if(rain.model=="Gamma"){
-    z = qgamma(pnorm(y),scale = rain.par[1],shape=rain.par[2])
+    z = stats::qgamma(stats::pnorm(y),scale = rain.par[1],shape=rain.par[2])
   } else if (rain.model=="AB"){
     stop ("[WACSsimul] transform.rain: model AB not implemented yet")
   }

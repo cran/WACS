@@ -57,9 +57,9 @@
 #' \dontrun{
 #'   ## Simple example
 #'   data(ClimateSeries)
-#'   ThisData = WACSdata(ClimateSeries,from="1995-01-01",to="1999-12-31")
+#'   ThisData = WACSdata(ClimateSeries)
 #'   ThisPar  = WACSestim(ThisData)
-#'   ThisSim  = WACSsimul(ThisPar,from="1995-01-01",to="1999-12-31")
+#'   ThisSim  = WACSsimul(ThisPar, from="1995-01-01", to="2012-12-31")
 #'   Val1 = WACSvalid(what="Sim",wacsdata = ThisData, 
 #'                    wacspar = ThisPar, wacssimul = ThisSim, varname="tmin")
 #'   Val2 = WACSvalid(what="MeanSd",wacsdata = ThisData, 

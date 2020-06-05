@@ -32,4 +32,3 @@ Figures are either displayed or printed in a file
 }
 
 }
-

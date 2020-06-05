@@ -103,7 +103,7 @@ wacsvalid.Rain = function(wacsdata,wacspar){
     y     = sort(wacsdata$data$rain[(wacsdata$data$season == s) & 
                                 (wacsdata$data$rain > 0)]);
     res[[s]] = list(
-      theoretical = qgamma(c(1:(length(y)-1))/length(y),
+      theoretical = stats::qgamma(c(1:(length(y)-1))/length(y),
                          scale=scale, shape=shape),  
       observed = y[1:(length(y)-1)], par=wacspar$Rain$RainPar[s,]);
   }
@@ -135,7 +135,7 @@ wacsvalid.MeanSd = function(wacsdata,wacssimul,varname){
     for ( j in 1:12 ) {
       meanObs[i,j] = mean(wacsdata$data[(wacsdata$data$year == y 
                                          & wacsdata$data$month == j), varname])
-      sdObs[i,j] = sd(wacsdata$data[(wacsdata$data$year == y 
+      sdObs[i,j] = stats::sd(wacsdata$data[(wacsdata$data$year == y 
                                      & wacsdata$data$month == j), varname])
     }
   }
@@ -145,7 +145,7 @@ wacsvalid.MeanSd = function(wacsdata,wacssimul,varname){
     for ( j in 1:12 ) {
       meanSim[i,j] = mean(wacssimul$sim[(wacssimul$sim$year == y 
                                          & wacssimul$sim$month == j), varname]);
-      sdSim[i,j] = sd(wacssimul$sim[(wacssimul$sim$year == y 
+      sdSim[i,j] = stats::sd(wacssimul$sim[(wacssimul$sim$year == y 
                                      & wacssimul$sim$month == j), varname]);
     }
   }
@@ -181,7 +181,7 @@ wacsvalid.BiVar = function(wacsdata,wacssimul,varname,varname2){
                                     (wacsdata$data$month == j)),varname]
         tmp2 = wacsdata$data[which((wacsdata$data$year == y) &
                                      (wacsdata$data$month == j)),varname2]
-        corObs[i,j] = cor(tmp, tmp2)
+        corObs[i,j] = stats::cor(tmp, tmp2)
       }
     }
   
@@ -190,7 +190,7 @@ wacsvalid.BiVar = function(wacsdata,wacssimul,varname,varname2){
       for ( j in 1:12) {
         tmp  = sims[which((sims$year == y) & (sims$month == j)), varname]
         tmp2 = sims[which((sims$year == y) & (sims$month == j)), varname2]
-        corSim[i,j] = cor(tmp, tmp2)
+        corSim[i,j] = stats::cor(tmp, tmp2)
       }
     }
     res = list(corObs= corObs, corSim=corSim, varname=varname,varname2=varname2);
@@ -223,7 +223,7 @@ wacsvalid.CorTemp = function(wacsdata,wacssimul,varname){
 
     for ( j in 1:12) {
       tmp = wacsdata$data[which((wacsdata$data$year == y) & (wacsdata$data$month == j)), varname]
-      corObs[i,j] = cor(tmp[-1], tmp[-length(tmp)])
+      corObs[i,j] = stats::cor(tmp[-1], tmp[-length(tmp)])
     }
   }
 
@@ -231,7 +231,7 @@ wacsvalid.CorTemp = function(wacsdata,wacssimul,varname){
     y = unique(sims$year)[i]
     for ( j in 1:12) {
       tmp = sims[which((sims$year == y) & (sims$month == j)), varname]
-      corSim[i,j] = cor(tmp[-1], tmp[-length(tmp)])
+      corSim[i,j] = stats::cor(tmp[-1], tmp[-length(tmp)])
     }
   }
   options(warn=0)

@@ -19,7 +19,10 @@
   
 #' Estimation of the parameters of a WACS model
 #'
-#' @import mclust
+#' @importFrom mclust Mclust
+#' @importFrom mclust densityMclust
+#' @importFrom mclust plotDensityMclustd
+#' @importFrom mclust mclustBIC
 #' @import mnormt
 #' @import tmvtnorm
 #' 
@@ -50,7 +53,7 @@
 #' \dontrun{
 #'
 #'  ## For an estimation with default setting 
-#'  ThisPar  = WACSestim(ThisData,from="1995-01-01",to="1999-12-31")
+#'  ThisPar  = WACSestim(ThisData)
 #'
 #'  ## For an estimation with max. 2 dry and wet weather types per season, 
 #'  ## and production of plots
@@ -110,7 +113,7 @@ WACSestim=function(wacsdata,spar=0.7,trend.norm="L2",rain.model="Gamma",method="
   
   # Checking if the number of days is a multiple of number of years
   Nd = nrow(DATA)            # number of days
-  Ny = Nd%/%365              # number of years -- must be an integer
+  Ny = Nd%/%365                 # number of years -- must be an integer
   
   if (Nd != Ny*365) {
     stop("[WACSestim] length of data should be multiple of 365 (maybe you forgot to use WACSdata)")

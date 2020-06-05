@@ -80,13 +80,13 @@
   clust.dry   = EMdry$classification
  
   if (plot.it){
-    pdf(paste(DIR,"mclust_",season,"_dry.pdf",sep=""))  
+    grDevices::pdf(paste(DIR,"mclust_",season,"_dry.pdf",sep=""))  
     if (FIND){
-      plot(EMdry,what="BIC")
-      plot(EMdry,what="classification")
+      graphics::plot(EMdry,what="BIC")
+      graphics::plot(EMdry,what="classification")
       toto = densityMclust(V.dry,G=Nwt.dry)
       plotDensityMclustd(toto,data=V.dry,points.col="green",points.pch=".")
-      dev.off();rm(toto)
+      grDevices::dev.off(); rm(toto)
   }else{}
   }
   
@@ -101,13 +101,13 @@
   clust.wet = Nwt.dry + EMwet$classification
   
   if (plot.it){
-    pdf(paste(DIR,"mclust_",season,"_wet.pdf",sep=""))
+    grDevices::pdf(paste(DIR,"mclust_",season,"_wet.pdf",sep=""))
     if (FIND){ 
-      plot(EMwet,what="BIC")
-      plot(EMwet,what="classification")
+      graphics::plot(EMwet,what="BIC")
+      graphics::plot(EMwet,what="classification")
       toto = densityMclust(V.wet,G=Nwt.wet)
       plotDensityMclustd(toto,data=V.wet,points.col="blue",points.pch=".")
-      dev.off();rm(toto)
+      grDevices::dev.off();rm(toto)
   }else{}
   }
   

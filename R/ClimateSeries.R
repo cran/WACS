@@ -13,9 +13,9 @@
 #' 
 #' rain : Height of precipitation (mm)
 #' 
-#' tmin : Minimum temperature (Celsius)
+#' tmin : Minimum temperature (degré Celsius)
 #' 
-#' tmax : Maximum temperature (Celsius)
+#' tmax : Maximum temperature (degré Celsius)
 #' 
 #' V : Wind speed (meters per second)
 #' 

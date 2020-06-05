@@ -65,7 +65,7 @@
 #' @examples
 #' \dontrun{
 #'   ## Simple example
-#'   ThisData = WACSdata(ClimateSeries,from="1995-01-01",to="1999-12-31",
+#'   ThisData = WACSdata(ClimateSeries,from="1995-01-01",to="2012-12-31",
 #'                       Trange=F,seasons=c("03-01","06-01","09-01","12-01"))
 #'  }
 #'  
